@@ -1,0 +1,2547 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<meta
+    name="description"
+    content="Car Price Predictor - Estimate the market value of a used car using machine learning."
+>
+
+<title>AutoPrice ML | Car Price Predictor</title>
+
+
+<!-- =====================================================
+     GOOGLE FONT
+     ===================================================== -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+>
+
+
+<!-- =====================================================
+     FAVICON
+     ===================================================== -->
+
+<link
+    rel="icon"
+    type="image/svg+xml"
+    href="{{ url_for('static', filename='favicon.svg') }}"
+>
+
+
+<!-- =====================================================
+     CUSTOM CSS
+     ===================================================== -->
+
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}"
+>
+```
+
+</head>
+
+<body>
+
+```
+<!-- =====================================================
+     NAVIGATION
+     ===================================================== -->
+
+<header class="navbar">
+
+    <div class="nav-container">
+
+        <a
+            href="#top"
+            class="logo"
+            aria-label="AutoPrice ML home"
+        >
+
+            <span class="logo-icon">
+                🚗
+            </span>
+
+            <span>
+                AutoPrice <strong>ML</strong>
+            </span>
+
+        </a>
+
+
+        <nav
+            class="nav-links"
+            aria-label="Main navigation"
+        >
+
+            <a href="#predict">
+                Predict
+            </a>
+
+            <a href="#how-it-works">
+                How It Works
+            </a>
+
+            <a href="#about-model">
+                Model
+            </a>
+
+        </nav>
+
+    </div>
+
+</header>
+
+
+<!-- =====================================================
+     MAIN CONTENT
+     ===================================================== -->
+
+<main id="top">
+
+
+    <!-- =================================================
+         HERO SECTION
+         ================================================= -->
+
+    <section class="hero-section">
+
+        <div class="hero-container">
+
+
+            <!-- Hero Text -->
+
+            <div class="hero-content">
+
+                <div class="hero-badge">
+
+                    <span class="pulse-dot"></span>
+
+                    Machine Learning Powered
+
+                </div>
+
+
+                <h1>
+                    Predict Your Car's
+                    <span>Market Value</span>
+                </h1>
+
+
+                <p class="hero-description">
+
+                    Get an estimated car price using a
+                    machine learning model based on the
+                    vehicle's company, model, year,
+                    fuel type, and kilometres driven.
+
+                </p>
+
+
+                <div class="hero-actions">
+
+                    <a
+                        href="#predict"
+                        class="hero-button"
+                    >
+
+                        Start Prediction
+
+                        <span>
+                            ↓
+                        </span>
+
+                    </a>
+
+                </div>
+
+
+                <!-- Small stats -->
+
+                <div class="hero-stats">
+
+                    <div class="hero-stat">
+
+                        <strong>
+                            5
+                        </strong>
+
+                        <span>
+                            Input Features
+                        </span>
+
+                    </div>
+
+
+                    <div class="stat-divider"></div>
+
+
+                    <div class="hero-stat">
+
+                        <strong>
+                            ML
+                        </strong>
+
+                        <span>
+                            Prediction
+                        </span>
+
+                    </div>
+
+
+                    <div class="stat-divider"></div>
+
+
+                    <div class="hero-stat">
+
+                        <strong>
+                            Fast
+                        </strong>
+
+                        <span>
+                            Results
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Hero Visual -->
+
+            <div class="hero-visual">
+
+                <div class="visual-glow"></div>
+
+                <div class="car-illustration">
+
+                    <div class="car-top"></div>
+
+                    <div class="car-body">
+
+                        <div class="car-window window-left"></div>
+
+                        <div class="car-window window-right"></div>
+
+                        <div class="car-light"></div>
+
+                    </div>
+
+                    <div class="wheel wheel-left"></div>
+
+                    <div class="wheel wheel-right"></div>
+
+                </div>
+
+
+                <div class="floating-card floating-card-top">
+
+                    <span class="floating-icon">
+                        📊
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            ML Model
+                        </strong>
+
+                        <small>
+                            Linear Regression
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <div class="floating-card floating-card-bottom">
+
+                    <span class="floating-icon">
+                        ✓
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Instant Estimate
+                        </strong>
+
+                        <small>
+                            Prediction ready
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         PREDICTION SECTION
+         ================================================= -->
+
+    <section
+        id="predict"
+        class="prediction-section"
+    >
+
+        <div class="section-container">
+
+
+            <!-- Section Heading -->
+
+            <div class="section-heading">
+
+                <span class="section-label">
+                    PRICE ESTIMATOR
+                </span>
+
+                <h2>
+                    Tell us about your car
+                </h2>
+
+                <p>
+                    Enter the vehicle details below to
+                    generate an estimated market price.
+                </p>
+
+            </div>
+
+
+            <!-- Prediction Card -->
+
+            <div class="prediction-card">
+
+
+                <!-- Card Header -->
+
+                <div class="card-top">
+
+                    <div>
+
+                        <span class="card-number">
+                            01
+                        </span>
+
+                        <h3>
+                            Vehicle Information
+                        </h3>
+
+                        <p>
+                            Provide the basic details of
+                            the car you want to evaluate.
+                        </p>
+
+                    </div>
+
+                    <div class="card-icon">
+                        🚘
+                    </div>
+
+                </div>
+
+
+                <!-- Form -->
+
+                <form
+                    method="post"
+                    name="Modelform"
+                    id="prediction-form"
+                    novalidate
+                >
+
+                    <div class="form-grid">
+
+
+                        <!-- =================================================
+                             COMPANY
+                             ================================================= -->
+
+                        <div class="form-group">
+
+                            <label for="company">
+
+                                Car Company
+
+                                <span
+                                    class="required-star"
+                                    aria-hidden="true"
+                                >
+                                    *
+                                </span>
+
+                            </label>
+
+
+                            <div class="select-wrapper">
+
+                                <select
+                                    id="company"
+                                    name="company"
+                                    required
+                                    aria-required="true"
+                                >
+
+                                    <option
+                                        value=""
+                                        selected
+                                        disabled
+                                    >
+                                        Select a company
+                                    </option>
+
+
+                                    {% for company in companies %}
+
+                                        <option
+                                            value="{{ company }}"
+                                        >
+                                            {{ company }}
+                                        </option>
+
+                                    {% endfor %}
+
+                                </select>
+
+                            </div>
+
+                            <small
+                                class="field-error"
+                                id="company-error"
+                            ></small>
+
+                        </div>
+
+
+
+                        <!-- =================================================
+                             CAR MODEL
+                             ================================================= -->
+
+                        <div class="form-group">
+
+                            <label for="car_models">
+
+                                Car Model
+
+                                <span
+                                    class="required-star"
+                                    aria-hidden="true"
+                                >
+                                    *
+                                </span>
+
+                            </label>
+
+
+                            <div class="select-wrapper">
+
+                                <select
+                                    id="car_models"
+                                    name="car_models"
+                                    required
+                                    aria-required="true"
+                                    disabled
+                                >
+
+                                    <option
+                                        value=""
+                                        selected
+                                        disabled
+                                    >
+                                        Select a company first
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                            <small
+                                class="field-error"
+                                id="model-error"
+                            ></small>
+
+                        </div>
+
+
+
+                        <!-- =================================================
+                             YEAR
+                             ================================================= -->
+
+                        <div class="form-group">
+
+                            <label for="year">
+
+                                Year of Purchase
+
+                                <span
+                                    class="required-star"
+                                    aria-hidden="true"
+                                >
+                                    *
+                                </span>
+
+                            </label>
+
+
+                            <div class="select-wrapper">
+
+                                <select
+                                    id="year"
+                                    name="year"
+                                    required
+                                    aria-required="true"
+                                >
+
+                                    <option
+                                        value=""
+                                        selected
+                                        disabled
+                                    >
+                                        Select year
+                                    </option>
+
+
+                                    {% for year in years %}
+
+                                        <option
+                                            value="{{ year }}"
+                                        >
+                                            {{ year }}
+                                        </option>
+
+                                    {% endfor %}
+
+                                </select>
+
+                            </div>
+
+                            <small
+                                class="field-error"
+                                id="year-error"
+                            ></small>
+
+                        </div>
+
+
+
+                        <!-- =================================================
+                             FUEL
+                             ================================================= -->
+
+                        <div class="form-group">
+
+                            <label for="fuel_type">
+
+                                Fuel Type
+
+                                <span
+                                    class="required-star"
+                                    aria-hidden="true"
+                                >
+                                    *
+                                </span>
+
+                            </label>
+
+
+                            <div class="select-wrapper">
+
+                                <select
+                                    id="fuel_type"
+                                    name="fuel_type"
+                                    required
+                                    aria-required="true"
+                                >
+
+                                    <option
+                                        value=""
+                                        selected
+                                        disabled
+                                    >
+                                        Select fuel type
+                                    </option>
+
+
+                                    {% for fuel in fuel_types %}
+
+                                        <option
+                                            value="{{ fuel }}"
+                                        >
+                                            {{ fuel }}
+                                        </option>
+
+                                    {% endfor %}
+
+                                </select>
+
+                            </div>
+
+                            <small
+                                class="field-error"
+                                id="fuel-error"
+                            ></small>
+
+                        </div>
+
+
+
+                        <!-- =================================================
+                             KILOMETRES
+                             ================================================= -->
+
+                        <div class="form-group full-width">
+
+                            <label for="kilo_driven">
+
+                                Kilometres Driven
+
+                                <span
+                                    class="required-star"
+                                    aria-hidden="true"
+                                >
+                                    *
+                                </span>
+
+                            </label>
+
+
+                            <div class="input-wrapper">
+
+                                <input
+                                    type="number"
+                                    id="kilo_driven"
+                                    name="kilo_driven"
+                                    placeholder="e.g. 45000"
+                                    min="0"
+                                    step="1"
+                                    inputmode="numeric"
+                                    required
+                                    aria-required="true"
+                                    autocomplete="off"
+                                >
+
+                                <span class="input-unit">
+                                    KM
+                                </span>
+
+                            </div>
+
+
+                            <small class="input-hint">
+
+                                Enter the approximate total
+                                distance travelled.
+
+                            </small>
+
+
+                            <small
+                                class="field-error"
+                                id="km-error"
+                            ></small>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- =================================================
+                         GENERAL ERROR
+                         ================================================= -->
+
+                    <div
+                        id="form-error"
+                        class="form-error"
+                        role="alert"
+                        aria-live="assertive"
+                    ></div>
+
+
+
+                    <!-- =================================================
+                         PREDICT BUTTON
+                         ================================================= -->
+
+                    <button
+                        type="submit"
+                        id="predict-button"
+                        class="predict-button"
+                    >
+
+                        <span id="button-text">
+                            Predict Car Price
+                        </span>
+
+                        <span
+                            id="loading-spinner"
+                            class="loading-spinner"
+                            aria-hidden="true"
+                        ></span>
+
+                        <span
+                            class="button-arrow"
+                            aria-hidden="true"
+                        >
+                            →
+                        </span>
+
+                    </button>
+
+                </form>
+
+
+
+                <!-- =================================================
+                     PREDICTION RESULT
+                     ================================================= -->
+
+                <div
+                    id="result-card"
+                    class="result-card"
+                    aria-live="polite"
+                >
+
+                    <div class="result-header">
+
+                        <div>
+
+                            <span class="result-label">
+                                ESTIMATED MARKET PRICE
+                            </span>
+
+                            <p class="result-description">
+                                Based on the vehicle information
+                                you provided.
+                            </p>
+
+                        </div>
+
+                        <div class="result-check">
+                            ✓
+                        </div>
+
+                    </div>
+
+
+                    <div class="price-display">
+
+                        <span class="currency">
+                            Rs
+                        </span>
+
+                        <span id="prediction">
+                            0
+                        </span>
+
+                    </div>
+
+
+
+                    <!-- Prediction Summary -->
+
+                    <div class="prediction-summary">
+
+                        <div class="summary-title">
+                            Prediction Summary
+                        </div>
+
+
+                        <div class="summary-grid">
+
+                            <div class="summary-item">
+
+                                <span>
+                                    Company
+                                </span>
+
+                                <strong id="summary-company">
+                                    —
+                                </strong>
+
+                            </div>
+
+
+                            <div class="summary-item">
+
+                                <span>
+                                    Model
+                                </span>
+
+                                <strong id="summary-model">
+                                    —
+                                </strong>
+
+                            </div>
+
+
+                            <div class="summary-item">
+
+                                <span>
+                                    Year
+                                </span>
+
+                                <strong id="summary-year">
+                                    —
+                                </strong>
+
+                            </div>
+
+
+                            <div class="summary-item">
+
+                                <span>
+                                    Fuel
+                                </span>
+
+                                <strong id="summary-fuel">
+                                    —
+                                </strong>
+
+                            </div>
+
+
+                            <div class="summary-item summary-full">
+
+                                <span>
+                                    Kilometres Driven
+                                </span>
+
+                                <strong id="summary-km">
+                                    —
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <p class="prediction-disclaimer">
+
+                        This is an estimated value generated
+                        by a machine learning model and should
+                        not be considered an official market
+                        valuation.
+
+                    </p>
+
+
+
+                    <!-- Result Actions -->
+
+                    <div class="result-actions">
+
+                        <button
+                            type="button"
+                            id="reset-button"
+                            class="reset-button"
+                        >
+
+                            ↻
+
+                            <span>
+                                Start New Prediction
+                            </span>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         HOW IT WORKS
+         ================================================= -->
+
+    <section
+        id="how-it-works"
+        class="info-section"
+    >
+
+        <div class="section-container">
+
+            <div class="section-heading">
+
+                <span class="section-label">
+                    HOW IT WORKS
+                </span>
+
+                <h2>
+                    From car details to price
+                </h2>
+
+                <p>
+                    A simple three-step prediction process.
+                </p>
+
+            </div>
+
+
+            <div class="steps-grid">
+
+
+                <div class="step-card">
+
+                    <div class="step-number">
+                        01
+                    </div>
+
+                    <div class="step-icon">
+                        📝
+                    </div>
+
+                    <h3>
+                        Enter Details
+                    </h3>
+
+                    <p>
+                        Provide the company, model, year,
+                        fuel type, and kilometres driven.
+                    </p>
+
+                </div>
+
+
+                <div class="step-connector">
+                    →
+                </div>
+
+
+                <div class="step-card">
+
+                    <div class="step-number">
+                        02
+                    </div>
+
+                    <div class="step-icon">
+                        🧠
+                    </div>
+
+                    <h3>
+                        ML Model
+                    </h3>
+
+                    <p>
+                        Your information is processed by
+                        a trained Linear Regression model.
+                    </p>
+
+                </div>
+
+
+                <div class="step-connector">
+                    →
+                </div>
+
+
+                <div class="step-card">
+
+                    <div class="step-number">
+                        03
+                    </div>
+
+                    <div class="step-icon">
+                        💰
+                    </div>
+
+                    <h3>
+                        Get Estimate
+                    </h3>
+
+                    <p>
+                        Receive an estimated market price
+                        based on the model's prediction.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         ABOUT MODEL
+         ================================================= -->
+
+    <section
+        id="about-model"
+        class="model-section"
+    >
+
+        <div class="section-container">
+
+            <div class="model-layout">
+
+
+                <!-- Model Explanation -->
+
+                <div class="model-content">
+
+                    <span class="section-label">
+                        ABOUT THE MODEL
+                    </span>
+
+                    <h2>
+                        Machine learning behind
+                        the prediction
+                    </h2>
+
+                    <p>
+                        This application uses a
+                        <strong>Linear Regression</strong>
+                        model to estimate the price of a
+                        used car from historical vehicle data.
+                    </p>
+
+                    <p>
+                        The model considers key vehicle
+                        characteristics such as company,
+                        model, manufacturing year, fuel type,
+                        and kilometres driven to generate
+                        an estimated selling price.
+                    </p>
+
+                    <div class="model-note">
+
+                        <span class="note-icon">
+                            💡
+                        </span>
+
+                        <p>
+                            The prediction is an estimate.
+                            Actual market prices can vary
+                            depending on vehicle condition,
+                            location, demand, and other factors.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- Model Stats -->
+
+                <div class="model-stats-card">
+
+                    <div class="model-stat-row">
+
+                        <div class="model-stat-icon">
+                            🧠
+                        </div>
+
+                        <div>
+
+                            <span>
+                                Algorithm
+                            </span>
+
+                            <strong>
+                                Linear Regression
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="model-stat-row">
+
+                        <div class="model-stat-icon">
+                            📊
+                        </div>
+
+                        <div>
+
+                            <span>
+                                Input Features
+                            </span>
+
+                            <strong>
+                                5 Features
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="model-stat-row">
+
+                        <div class="model-stat-icon">
+                            🚘
+                        </div>
+
+                        <div>
+
+                            <span>
+                                Prediction Type
+                            </span>
+
+                            <strong>
+                                Car Price
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="model-stat-row">
+
+                        <div class="model-stat-icon">
+                            ⚡
+                        </div>
+
+                        <div>
+
+                            <span>
+                                Prediction
+                            </span>
+
+                            <strong>
+                                Real-time
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         TECHNOLOGY SECTION
+         ================================================= -->
+
+    <section class="technology-section">
+
+        <div class="section-container">
+
+            <div class="section-heading">
+
+                <span class="section-label">
+                    TECHNOLOGY
+                </span>
+
+                <h2>
+                    Built with modern tools
+                </h2>
+
+                <p>
+                    Technologies used to build this
+                    machine learning web application.
+                </p>
+
+            </div>
+
+
+            <div class="technology-grid">
+
+
+                <div class="technology-card">
+
+                    <span class="technology-icon">
+                        🐍
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Python
+                        </strong>
+
+                        <span>
+                            ML & Backend
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="technology-card">
+
+                    <span class="technology-icon">
+                        🌐
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Flask
+                        </strong>
+
+                        <span>
+                            Web Framework
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="technology-card">
+
+                    <span class="technology-icon">
+                        🧠
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Scikit-learn
+                        </strong>
+
+                        <span>
+                            Machine Learning
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="technology-card">
+
+                    <span class="technology-icon">
+                        🐼
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Pandas
+                        </strong>
+
+                        <span>
+                            Data Processing
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="technology-card">
+
+                    <span class="technology-icon">
+                        🔢
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            NumPy
+                        </strong>
+
+                        <span>
+                            Numerical Computing
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="technology-card">
+
+                    <span class="technology-icon">
+                        ⚡
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            JavaScript
+                        </strong>
+
+                        <span>
+                            Interactive UI
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="technology-card">
+
+                    <span class="technology-icon">
+                        🎨
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            HTML & CSS
+                        </strong>
+
+                        <span>
+                            Frontend
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         FINAL CTA
+         ================================================= -->
+
+    <section class="final-cta">
+
+        <div class="cta-container">
+
+            <span class="cta-icon">
+                🚗
+            </span>
+
+            <h2>
+                Ready to estimate your car's value?
+            </h2>
+
+            <p>
+                Enter your vehicle details and let the
+                model do the work.
+            </p>
+
+            <a
+                href="#predict"
+                class="cta-button"
+            >
+
+                Predict Car Price
+
+                <span>
+                    →
+                </span>
+
+            </a>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+
+<!-- =====================================================
+     FOOTER
+     ===================================================== -->
+
+<footer class="footer">
+
+    <div class="footer-container">
+
+
+        <div class="footer-brand">
+
+            <a
+                href="#top"
+                class="footer-logo"
+            >
+
+                <span>
+                    🚗
+                </span>
+
+                AutoPrice ML
+
+            </a>
+
+            <p>
+                A machine-learning based car price
+                prediction application.
+            </p>
+
+        </div>
+
+
+
+        <div class="footer-links">
+
+
+            <!-- GitHub -->
+
+            <a
+                href="https://github.com/muhammadsulaimandata"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub profile"
+            >
+
+                <span class="social-icon github-icon">
+
+                    <svg
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                    >
+
+                        <path
+                            d="M12 2C6.48 2 2 6.58 2 12.24c0 4.52 2.87 8.35 6.84 9.71.5.1.68-.22.68-.49 0-.24-.01-.89-.01-1.74-2.78.62-3.37-1.37-3.37-1.37-.45-1.19-1.11-1.51-1.11-1.51-.91-.64.07-.63.07-.63 1 .07 1.53 1.06 1.53 1.06.9 1.59 2.36 1.13 2.94.86.09-.67.35-1.13.64-1.39-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.04 1.03-2.76-.1-.26-.45-1.31.1-2.73 0 0 .84-.28 2.75 1.05a9.18 9.18 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.42.2 2.47.1 2.73.64.72 1.03 1.64 1.03 2.76 0 3.93-2.34 4.79-4.57 5.05.36.32.68.95.68 1.92 0 1.39-.01 2.5-.01 2.84 0 .27.18.59.69.49A10.26 10.26 0 0 0 22 12.24C22 6.58 17.52 2 12 2Z"
+                        />
+
+                    </svg>
+
+                </span>
+
+                <span>
+                    GitHub
+                </span>
+
+            </a>
+
+
+
+            <!-- LinkedIn -->
+
+            <a
+                href="https://www.linkedin.com/in/muhammad-sulaiman-analytics/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn profile"
+            >
+
+                <span class="social-icon linkedin-icon">
+
+                    <svg
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                    >
+
+                        <path
+                            d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.44-2.14 2.94v5.67H9.34V8.98h3.41v1.57h.05c.48-.9 1.64-1.85 3.37-1.85 3.61 0 4.28 2.37 4.28 5.46v6.29ZM5.32 7.4a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14ZM3.54 20.45H7.1V8.98H3.54v11.47ZM22.22 0H1.78C.8 0 0 .8 0 1.78v20.44C0 23.2.8 24 1.78 24h20.44c.98 0 1.78-.8 1.78-1.78V1.78C24 0.8 23.2 0 22.22 0Z"
+                        />
+
+                    </svg>
+
+                </span>
+
+                <span>
+                    LinkedIn
+                </span>
+
+            </a>
+
+
+
+            <!-- Twitter / X -->
+
+            <a
+                href="https://x.com/MuhammadSu78310"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Visit Twitter"
+            >
+
+                <span class="social-icon twitter-icon">
+
+                    <svg
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                    >
+
+                        <!-- X / Twitter icon -->
+
+                        <path
+                            d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.657l-5.214-6.817-5.96 6.817H1.687l7.73-8.835L1.26 2.25h6.826l4.713 6.231 5.445-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"
+                        />
+
+                    </svg>
+
+                </span>
+
+                <span>
+                    Twitter
+                </span>
+
+            </a>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="footer-bottom">
+
+        <p>
+            © 2026 AutoPrice ML. All rights reserved.
+        </p>
+
+        <p>
+
+            Designed & Developed by
+
+            <strong>
+                Sulaiman Analyst
+            </strong>
+
+        </p>
+
+    </div>
+
+</footer>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+     ===================================================== -->
+
+<script>
+
+
+    /* ==================================================
+       ELEMENT REFERENCES
+       ================================================== */
+
+    const form =
+        document.getElementById("prediction-form");
+
+    const company =
+        document.getElementById("company");
+
+    const carModel =
+        document.getElementById("car_models");
+
+    const year =
+        document.getElementById("year");
+
+    const fuelType =
+        document.getElementById("fuel_type");
+
+    const kiloDriven =
+        document.getElementById("kilo_driven");
+
+    const predictButton =
+        document.getElementById("predict-button");
+
+    const buttonText =
+        document.getElementById("button-text");
+
+    const spinner =
+        document.getElementById("loading-spinner");
+
+    const resultCard =
+        document.getElementById("result-card");
+
+    const prediction =
+        document.getElementById("prediction");
+
+    const resetButton =
+        document.getElementById("reset-button");
+
+    const formError =
+        document.getElementById("form-error");
+
+    const buttonArrow =
+        document.querySelector(".button-arrow");
+
+
+
+    /* ==================================================
+       SUMMARY ELEMENTS
+       ================================================== */
+
+    const summaryCompany =
+        document.getElementById("summary-company");
+
+    const summaryModel =
+        document.getElementById("summary-model");
+
+    const summaryYear =
+        document.getElementById("summary-year");
+
+    const summaryFuel =
+        document.getElementById("summary-fuel");
+
+    const summaryKm =
+        document.getElementById("summary-km");
+
+
+
+    /* ==================================================
+       FIELD ERROR ELEMENTS
+       ================================================== */
+
+    const companyError =
+        document.getElementById("company-error");
+
+    const modelError =
+        document.getElementById("model-error");
+
+    const yearError =
+        document.getElementById("year-error");
+
+    const fuelError =
+        document.getElementById("fuel-error");
+
+    const kmError =
+        document.getElementById("km-error");
+
+
+
+    /* ==================================================
+       CAR MODEL DROPDOWN
+       ================================================== */
+
+    function load_car_models(
+        company_id,
+        car_model_id
+    ) {
+
+        const selectedCompany =
+            document.getElementById(company_id);
+
+        const selectedModel =
+            document.getElementById(car_model_id);
+
+
+        /*
+         * Clear existing model options.
+         */
+
+        selectedModel.innerHTML = "";
+
+
+        /*
+         * No company selected.
+         */
+
+        if (!selectedCompany.value) {
+
+            const placeholder =
+                document.createElement("option");
+
+            placeholder.value = "";
+            placeholder.textContent =
+                "Select a company first";
+
+            placeholder.disabled = true;
+            placeholder.selected = true;
+
+            selectedModel.appendChild(
+                placeholder
+            );
+
+            selectedModel.disabled = true;
+
+            return;
+        }
+
+
+        /*
+         * Enable model dropdown.
+         */
+
+        selectedModel.disabled = false;
+
+
+        /*
+         * Add default model option.
+         */
+
+        const modelPlaceholder =
+            document.createElement("option");
+
+        modelPlaceholder.value = "";
+        modelPlaceholder.textContent =
+            "Select a car model";
+
+        modelPlaceholder.disabled = true;
+        modelPlaceholder.selected = true;
+
+        selectedModel.appendChild(
+            modelPlaceholder
+        );
+
+
+        /*
+         * Get selected company.
+         */
+
+        const selectedCompanyValue =
+            selectedCompany.value;
+
+
+        /*
+         * Add models for the selected company.
+         *
+         * IMPORTANT:
+         * We intentionally do NOT declare a
+         * const/let variable inside the Jinja
+         * loop. This prevents duplicate
+         * JavaScript declarations after
+         * Jinja renders the template.
+         */
+
+        {% for company_item in companies %}
+
+            if (
+                selectedCompanyValue ===
+                {{ company_item | tojson }}
+            ) {
+
+                {% for model in car_models %}
+
+                    {% if company_item in model %}
+
+                        selectedModel.appendChild(
+                            new Option(
+                                {{ model | tojson }},
+                                {{ model | tojson }}
+                            )
+                        );
+
+                    {% endif %}
+
+                {% endfor %}
+
+            }
+
+        {% endfor %}
+
+
+        /*
+         * Check whether any model was added.
+         */
+
+        if (
+            selectedModel.options.length === 1
+        ) {
+
+            selectedModel.innerHTML = "";
+
+            const noModelOption =
+                document.createElement("option");
+
+            noModelOption.value = "";
+            noModelOption.textContent =
+                "No models available";
+
+            noModelOption.disabled = true;
+            noModelOption.selected = true;
+
+            selectedModel.appendChild(
+                noModelOption
+            );
+
+            selectedModel.disabled = true;
+        }
+
+    }
+
+
+
+    /* ==================================================
+       COMPANY CHANGE EVENT
+       ================================================== */
+
+    company.addEventListener(
+        "change",
+        function () {
+
+            load_car_models(
+                "company",
+                "car_models"
+            );
+
+
+            clearFieldError(
+                company,
+                companyError
+            );
+
+
+            clearFieldError(
+                carModel,
+                modelError
+            );
+
+        }
+    );
+
+
+
+    /* ==================================================
+       VALIDATION FUNCTIONS
+       ================================================== */
+
+    function clearFieldError(
+        field,
+        errorElement
+    ) {
+
+        field.classList.remove(
+            "input-error"
+        );
+
+        errorElement.textContent = "";
+
+    }
+
+
+
+    function setFieldError(
+        field,
+        errorElement,
+        message
+    ) {
+
+        field.classList.add(
+            "input-error"
+        );
+
+        errorElement.textContent =
+            message;
+
+    }
+
+
+
+    function validateForm() {
+
+        let valid = true;
+
+
+        /*
+         * Clear general error.
+         */
+
+        formError.textContent = "";
+
+        formError.classList.remove(
+            "show"
+        );
+
+
+        /*
+         * Clear field errors.
+         */
+
+        clearFieldError(
+            company,
+            companyError
+        );
+
+        clearFieldError(
+            carModel,
+            modelError
+        );
+
+        clearFieldError(
+            year,
+            yearError
+        );
+
+        clearFieldError(
+            fuelType,
+            fuelError
+        );
+
+        clearFieldError(
+            kiloDriven,
+            kmError
+        );
+
+
+
+        /* Company */
+
+        if (!company.value) {
+
+            setFieldError(
+                company,
+                companyError,
+                "Please select a car company."
+            );
+
+            valid = false;
+
+        }
+
+
+
+        /* Model */
+
+        if (
+            !carModel.value ||
+            carModel.disabled
+        ) {
+
+            setFieldError(
+                carModel,
+                modelError,
+                "Please select a car model."
+            );
+
+            valid = false;
+
+        }
+
+
+
+        /* Year */
+
+        if (!year.value) {
+
+            setFieldError(
+                year,
+                yearError,
+                "Please select the purchase year."
+            );
+
+            valid = false;
+
+        }
+
+
+
+        /* Fuel */
+
+        if (!fuelType.value) {
+
+            setFieldError(
+                fuelType,
+                fuelError,
+                "Please select the fuel type."
+            );
+
+            valid = false;
+
+        }
+
+
+
+        /* Kilometres */
+
+        const kmValue =
+            Number(kiloDriven.value);
+
+
+        if (
+            kiloDriven.value === "" ||
+            !Number.isFinite(kmValue) ||
+            kmValue < 0
+        ) {
+
+            setFieldError(
+                kiloDriven,
+                kmError,
+                "Please enter a valid number of kilometres."
+            );
+
+            valid = false;
+
+        }
+
+
+        return valid;
+
+    }
+
+
+
+    /* ==================================================
+       REMOVE ERRORS WHEN USER CORRECTS INPUT
+       ================================================== */
+
+    [
+        company,
+        carModel,
+        year,
+        fuelType
+    ].forEach(
+        function (field) {
+
+            field.addEventListener(
+                "change",
+                function () {
+
+                    field.classList.remove(
+                        "input-error"
+                    );
+
+                }
+            );
+
+        }
+    );
+
+
+
+    kiloDriven.addEventListener(
+        "input",
+        function () {
+
+            kiloDriven.classList.remove(
+                "input-error"
+            );
+
+            kmError.textContent = "";
+
+        }
+    );
+
+
+
+    /* ==================================================
+       FORMAT CURRENCY
+       ================================================== */
+
+    function formatPrice(value) {
+
+        return new Intl.NumberFormat(
+            "en-PK",
+            {
+                maximumFractionDigits: 2
+            }
+        ).format(value);
+
+    }
+
+
+
+    /* ==================================================
+       FORM SUBMISSION
+       ================================================== */
+
+    form.addEventListener(
+        "submit",
+        function (event) {
+
+            event.preventDefault();
+
+
+            /*
+             * Validate form.
+             */
+
+            if (!validateForm()) {
+
+                formError.textContent =
+                    "Please correct the highlighted fields.";
+
+                formError.classList.add(
+                    "show"
+                );
+
+                return;
+
+            }
+
+
+            /*
+             * Clear previous error.
+             */
+
+            formError.textContent = "";
+
+            formError.classList.remove(
+                "show"
+            );
+
+
+            /*
+             * Collect form data.
+             */
+
+            const fd =
+                new FormData(form);
+
+
+            /*
+             * Get selected values for summary.
+             */
+
+            const selectedCompany =
+                company.options[
+                    company.selectedIndex
+                ].text;
+
+
+            const selectedModel =
+                carModel.options[
+                    carModel.selectedIndex
+                ].text;
+
+
+            const selectedYear =
+                year.options[
+                    year.selectedIndex
+                ].text;
+
+
+            const selectedFuel =
+                fuelType.options[
+                    fuelType.selectedIndex
+                ].text;
+
+
+
+            /* ==================================================
+               LOADING STATE
+               ================================================== */
+
+            predictButton.disabled =
+                true;
+
+            buttonText.textContent =
+                "Predicting...";
+
+            spinner.classList.add(
+                "show"
+            );
+
+            buttonArrow.style.display =
+                "none";
+
+
+            /*
+             * Hide previous result.
+             */
+
+            resultCard.classList.remove(
+                "show"
+            );
+
+
+
+            /* ==================================================
+               AJAX REQUEST
+               ================================================== */
+
+            const xhr =
+                new XMLHttpRequest();
+
+
+            xhr.open(
+                "POST",
+                "/predict",
+                true
+            );
+
+
+
+            /*
+             * Response handler.
+             */
+
+            xhr.onreadystatechange =
+                function () {
+
+                    if (
+                        xhr.readyState !==
+                        XMLHttpRequest.DONE
+                    ) {
+
+                        return;
+
+                    }
+
+
+
+                    /* ==================================================
+                       RESTORE BUTTON
+                       ================================================== */
+
+                    predictButton.disabled =
+                        false;
+
+                    buttonText.textContent =
+                        "Predict Car Price";
+
+                    spinner.classList.remove(
+                        "show"
+                    );
+
+                    buttonArrow.style.display =
+                        "inline";
+
+
+
+                    /* ==================================================
+                       SUCCESS
+                       ================================================== */
+
+                    if (
+                        xhr.status >= 200 &&
+                        xhr.status < 300
+                    ) {
+
+                        const price =
+                            Number(
+                                xhr.responseText
+                            );
+
+
+                        /*
+                         * Check prediction.
+                         */
+
+                        if (
+                            !Number.isFinite(
+                                price
+                            )
+                        ) {
+
+                            showPredictionError(
+                                "The server returned an invalid prediction."
+                            );
+
+                            return;
+
+                        }
+
+
+
+                        /*
+                         * Display price.
+                         */
+
+                        prediction.textContent =
+                            formatPrice(price);
+
+
+
+                        /*
+                         * Populate summary.
+                         */
+
+                        summaryCompany.textContent =
+                            selectedCompany;
+
+                        summaryModel.textContent =
+                            selectedModel;
+
+                        summaryYear.textContent =
+                            selectedYear;
+
+                        summaryFuel.textContent =
+                            selectedFuel;
+
+                        summaryKm.textContent =
+                            Number(
+                                kiloDriven.value
+                            ).toLocaleString(
+                                "en-PK"
+                            ) + " km";
+
+
+
+                        /*
+                         * Show result.
+                         */
+
+                        resultCard.classList.add(
+                            "show"
+                        );
+
+
+
+                        /*
+                         * Scroll result into view.
+                         */
+
+                        setTimeout(
+                            function () {
+
+                                resultCard.scrollIntoView(
+                                    {
+                                        behavior:
+                                            "smooth",
+
+                                        block:
+                                            "nearest"
+                                    }
+                                );
+
+                            },
+                            100
+                        );
+
+                    }
+
+
+                    /* ==================================================
+                       SERVER ERROR
+                       ================================================== */
+
+                    else {
+
+                        showPredictionError(
+                            "We couldn't generate a prediction. Please try again."
+                        );
+
+                    }
+
+                };
+
+
+
+            /* ==================================================
+               NETWORK ERROR
+               ================================================== */
+
+            xhr.onerror =
+                function () {
+
+                    predictButton.disabled =
+                        false;
+
+                    buttonText.textContent =
+                        "Predict Car Price";
+
+                    spinner.classList.remove(
+                        "show"
+                    );
+
+                    buttonArrow.style.display =
+                        "inline";
+
+
+                    showPredictionError(
+                        "Unable to connect to the server. Please check your connection and try again."
+                    );
+
+                };
+
+
+
+            /*
+             * Send data to Flask.
+             */
+
+            xhr.send(fd);
+
+        }
+    );
+
+
+
+    /* ==================================================
+       ERROR DISPLAY
+       ================================================== */
+
+    function showPredictionError(
+        message
+    ) {
+
+        formError.textContent =
+            message;
+
+        formError.classList.add(
+            "show"
+        );
+
+    }
+
+
+
+    /* ==================================================
+       RESET
+       ================================================== */
+
+    resetButton.addEventListener(
+        "click",
+        function () {
+
+            /*
+             * Reset form.
+             */
+
+            form.reset();
+
+
+            /*
+             * Restore model dropdown.
+             */
+
+            carModel.innerHTML =
+                `
+                <option
+                    value=""
+                    selected
+                    disabled
+                >
+                    Select a company first
+                </option>
+                `;
+
+
+            carModel.disabled =
+                true;
+
+
+
+            /*
+             * Hide result.
+             */
+
+            resultCard.classList.remove(
+                "show"
+            );
+
+
+
+            /*
+             * Clear general error.
+             */
+
+            formError.textContent = "";
+
+            formError.classList.remove(
+                "show"
+            );
+
+
+
+            /*
+             * Clear field errors.
+             */
+
+            [
+                company,
+                carModel,
+                year,
+                fuelType,
+                kiloDriven
+            ].forEach(
+                function (field) {
+
+                    field.classList.remove(
+                        "input-error"
+                    );
+
+                }
+            );
+
+
+
+            [
+                companyError,
+                modelError,
+                yearError,
+                fuelError,
+                kmError
+            ].forEach(
+                function (error) {
+
+                    error.textContent = "";
+
+                }
+            );
+
+
+
+            /*
+             * Reset prediction display.
+             */
+
+            prediction.textContent =
+                "0";
+
+            summaryCompany.textContent =
+                "—";
+
+            summaryModel.textContent =
+                "—";
+
+            summaryYear.textContent =
+                "—";
+
+            summaryFuel.textContent =
+                "—";
+
+            summaryKm.textContent =
+                "—";
+
+
+
+            /*
+             * Scroll back to prediction form.
+             */
+
+            document
+                .getElementById("predict")
+                .scrollIntoView(
+                    {
+                        behavior:
+                            "smooth"
+                    }
+                );
+
+        }
+    );
+
+
+</script>
+```
+
+</body>
+
+</html>
