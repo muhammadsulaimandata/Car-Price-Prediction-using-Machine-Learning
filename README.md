@@ -4,12 +4,12 @@ This project predicts used-car selling prices from vehicle attributes. It includ
 
 ## Contents
 
-- `main.ipynb` — exploratory analysis, preprocessing, model training, and evaluation
-- `LinearRegressionModel.pkl` — serialized trained model
-- `application.py` — web application entry point
-- `templates/index.html` — prediction form and result page
-- `static/CSS/style.css` — application styling
-- `Data/` — raw and cleaned car datasets
+- `main.ipynb` - exploratory analysis, preprocessing, model training, and evaluation
+- `LinearRegressionModel.pkl` - serialized trained model
+- `application.py` - web application entry point
+- `templates/index.html` - prediction form and result page
+- `static/CSS/style.css` - application styling
+- `Data/` - raw and cleaned car datasets
 
 ## Running the application
 
@@ -18,7 +18,7 @@ This project predicts used-car selling prices from vehicle attributes. It includ
 3. Start the application:
 
    ```bash
-   python application.py
+   application.py
    ```
 
 4. Open the local URL printed by the application and submit the vehicle details.
