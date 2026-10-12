@@ -31,18 +31,18 @@ The `Data/` directory contains the original scraped dataset and cleaned versions
 
 ## Web Application Preview
 
-### Introductory Preview
+### 1. Introductory Preview
 
 ![Introductoy View](1.png)
 
-### Model Data Entries
+### 2. Model Data Entries
 
 ![Data Entry View](2.png)
 
-### Model Output
+### 3. Model Output
 
 ![Model Output](3.png)
 
-### Tech Used
+### 4. Tech Used
 
 ![Tech Used](4.png)
