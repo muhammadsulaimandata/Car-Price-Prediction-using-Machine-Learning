@@ -28,3 +28,21 @@ The model artifact and preprocessing assumptions must remain compatible with the
 ## Data workflow
 
 The `Data/` directory contains the original scraped dataset and cleaned versions used for analysis. The notebook is the source of truth for data preparation and model experimentation.
+
+## Web Application Preview
+
+### Introductory Preview
+
+![Introductoy View](1.png)
+
+### Model Data Entries
+
+![Data Entry View](2.png)
+
+### Model Output
+
+![Model Output](3.png)
+
+### Tech Used
+
+![Tech Used](4.png)
